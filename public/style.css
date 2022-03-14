@@ -1,3 +1,7 @@
+* {
+  text-align: center;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -17,5 +21,46 @@ nav a {
 
 form div {
   margin: 1em;
+  display: block;
+  text-align: center;
+}
+
+label {
   display: inline-block;
+  width: 100px;
+}
+
+input {
+  padding: 5px;
+  margin: 2px;
+  width: 200px;
+}
+
+.guestNavLinks {
+  text-align: right;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.mapTitle {
+  position: absolute;
+  top: 13rem;
+  left: 1rem;
+  color: black;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+}
+
+.search {
+  position: absolute;
+  top: 13rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 400px;
+  z-index: 10;
 }

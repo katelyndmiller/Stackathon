@@ -1,25 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Map from "../components/Map";
 
-/**
- * COMPONENT
- */
+
 export const Home = props => {
-  const {username} = props
+  const {firstName} = props
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
+      <div>
+        <h3>Welcome, {firstName}!</h3>
+      </div>
+      <div>
+        <Map />
+      </div>
     </div>
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
-    username: state.auth.username
+    firstName: state.auth.firstName
   }
 }
 
