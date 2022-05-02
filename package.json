@@ -32,6 +32,7 @@
     "history": "^4.9.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "node-sass": "^7.0.1",
     "pg": "^8.5.1",
     "react-google-maps": "^9.4.5",
     "sequelize": "^6.3.5",
@@ -61,8 +62,11 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
     "supertest": "^4.0.2",
-    "webpack": "^5.15.0",
+    "webpack": "^5.72.0",
     "webpack-cli": "^4.3.1"
   }
 }

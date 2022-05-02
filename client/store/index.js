@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import pins from './Pin'
+import "@reach/combobox/styles.css";
 
 const reducer = combineReducers({
   auth,

@@ -25,11 +25,6 @@ form div {
   text-align: center;
 }
 
-label {
-  display: inline-block;
-  width: 100px;
-}
-
 input {
   padding: 5px;
   margin: 2px;

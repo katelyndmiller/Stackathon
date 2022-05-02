@@ -42,6 +42,11 @@ const Map = (props) => {
     props.getPins(props.userId);
   }, []);
 
+  const panTo = React.useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
+
   const [isPinOpen, setIsPinOpen] = React.useState({});
 
   const { isLoaded, loadError } = useLoadScript({
@@ -61,9 +66,7 @@ const Map = (props) => {
   
   return (
     <div>
-      <h2 className="mapTitle">Places you've been!</h2>
-
-      <Search />
+      <Search panTo={panTo}/>
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -106,12 +109,7 @@ function Search({panTo}) {
         value,
         setValue, 
         suggestions: { status, data },
-        clearSuggestions} = usePlacesAutoComplete({
-            requestOptions: {
-                location: { lat: () => 37.09024, lng: () => -95.712891 },
-                radius: 100 * 5000,
-            }
-        })
+        clearSuggestions} = usePlacesAutoComplete()
 
     const handleInput = (e) => {
         setValue(e.target.value)
@@ -131,23 +129,24 @@ function Search({panTo}) {
       };
 
     return (
-        <div className="search">
-            <Combobox onSelect={handleSelect}>
-                <ComboboxInput 
-                    value={value}
-                    onChange={handleInput}
-                    disabled={!ready}
-                    placeholder="Search..."
-                />
-            <ComboboxPopover>
-                <ComboboxList>
-                    {status === "OK" && data.map(({id, description}) => {
-                        <ComboboxOption key={id} value={description} />
-                    })}
-                </ComboboxList>
-            </ComboboxPopover>
-            </Combobox>
-        </div>
+      <div className="search">
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Search your location"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ id, description }) => (
+                <ComboboxOption key={id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
     )
 }
 
