@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {authenticate} from '../store'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -9,35 +10,18 @@ const AuthFormSignup = props => {
   const {name, displayName, handleSubmit, error} = props
   
   return (
-    <div id="signup">
+    <div id="signup" className = 'login-signup'>
       <form onSubmit={handleSubmit} name={name}>
-      <div>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
-          <input name="firstName" type="text" />
-        </div>
-        <div>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
-          <input name="lastName" type="text" />
-        </div>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div className="signup-button">
+      <div className = 'fields'>
+          <input name="firstName" type="text" placeholder = 'First Name' />
+          <input name="lastName" type="text" placeholder = 'Last Name'/>
+          <input name="email" type="text" placeholder = 'Email'/>
+          <input name="password" type="password" placeholder = 'Password'/>
           <button type="submit">{displayName}</button>
-        </div>
+          <div>
+            <Link to="/login"><small>Login</small></Link>
+          </div>
+      </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
     </div>

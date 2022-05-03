@@ -7,7 +7,7 @@ const AuthFormLogin = props => {
   const {name, displayName, handleSubmit, error} = props
   
   return (
-    <div className = 'login'>
+    <div className = 'login-signup'>
       <form onSubmit={handleSubmit} name={name}>
         <div className="fields">
           <input name="email" type="text" placeholder='Email'/>

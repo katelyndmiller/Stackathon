@@ -4,23 +4,22 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>Travel Tracker</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div className="guestNavLinks">
-          <Link to="/login" style={{"color": "black"}}>Login</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
+  <div className = 'navbar'>
+    <div className = 'wrapper'>
+        <h1>Travel Tracker</h1>
+        <nav>
+          {isLoggedIn ? (
+            <div>
+              <Link to="/home">Home</Link>
+              <a href="#" onClick={handleClick}>
+                Logout
+              </a>
+            </div>
+          ) : (
+            null
+          )}
+        </nav>
+    </div>
   </div>
 )
 

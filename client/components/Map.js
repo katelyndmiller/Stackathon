@@ -94,12 +94,13 @@ const Map = (props) => {
           >
             {isPinOpen[pin.id] && (
               <InfoWindow 
-              onCloseClick={() => {
-                toggleInfoWindow(pin.id)
-              }}
-              position={{ lat: pin.latitude, lng: pin.longitude }}>
+                onCloseClick={() => {
+                  toggleInfoWindow(pin.id)
+                }}
+                position={{ lat: pin.latitude, lng: pin.longitude }}
+              >
                 <div style={{}}>
-                  <h1>InfoWindow</h1>
+                  <h3>Description</h3>
                   <button onClick={() => props.deletePin(pin.id)}>Remove</button>
                 </div>
               </InfoWindow>
@@ -144,7 +145,7 @@ function Search({panTo}) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search your location"
+          placeholder="Search Location"
         />
         <ComboboxPopover>
           <ComboboxList>

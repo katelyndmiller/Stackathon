@@ -1,58 +1,109 @@
-* {
-  text-align: center;
+.app {
+  height: 100vh;
+}
+
+.signup-login {
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: #2B6777;
+  position: relative;
+  scroll-behavior: smooth;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
+.login-signup {
+  width: 250px;
+  height: 275px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 }
 
-label {
-  display: block;
+.navbar {
+  width: 100%;
+  height: 70px;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+.navbar h1 {
+  font-size: 25px;
+  margin-left: 5px;
 }
 
-form div {
-  margin: 1em;
-  display: block;
-  text-align: center;
+.navbar nav {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.wrapper {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin: 10px 10px;
+  color: white;
+  background-color: #52AB98;
+  border: none;
+  border-radius: 10px;
+  min-height: 30px;
+  min-width: 100px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+  transform: translateY(-0.25em)
 }
 
 input {
-  padding: 5px;
-  margin: 2px;
-  width: 200px;
+  margin: 5px;
+  text-align: center;
 }
 
-.guestNavLinks {
-  text-align: right;
-}
 
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.mapTitle {
-  position: absolute;
-  top: 13rem;
-  left: 1rem;
+a {
+  text-decoration: none;
   color: black;
+  font-weight: 300;
+}
+
+a:hover, link:hover {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.greeting {
+  position: absolute;
+  width: 150px;
+  font-size: 20px;
+  font-weight: 100;
+  top: 5rem;
+  left: 1rem;
+  color: #52AB98;
   z-index: 10;
-  margin: 0;
-  padding: 0;
 }
 
 .search {
   position: absolute;
-  top: 13rem;
+  top: 5rem;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
