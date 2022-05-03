@@ -8,12 +8,7 @@ export const Home = props => {
 
   return (
     <div>
-      <div className = 'greeting'>
-        <h3>Hi, {firstName}!</h3>
-      </div>
-      <div>
-        <Map />
-      </div>
+        <Map firstName={firstName}/>
     </div>
   )
 }

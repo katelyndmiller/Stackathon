@@ -22,7 +22,7 @@ import { setNewPin, getAllPins, deletePin } from "../store/Pin";
 const libraries = ["places"];
 
 const mapContainerStyle = {
-  width: "100vw",
+  width: "80vw",
   height: "100vh",
 };
 
@@ -71,46 +71,68 @@ const Map = (props) => {
   if (!isLoaded) return "Loading...";
   
   return (
-    <div>
-      <Search panTo={panTo}/>
-
+    <div className = 'map'>
+      <div className = 'mapright'>
+        <h1>Hi, {props.firstName}</h1>
+        <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar below to find a location.</p>
+        <Search panTo={panTo}/>
+        <Locate panTo={panTo} />
+      </div>
+    
+    <div className = 'mapleft'>
       <GoogleMap
-        mapContainerStyle={mapContainerStyle}
-        zoom={3.5}
-        center={center}
-        options={options}
-        onClick={(event) => {
-          props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
-        }}
-        onLoad={onMapLoad}
-      >
-        {props.pins.map((pin) => (
-          <Marker
-            onClick={() => {
-                toggleInfoWindow(pin.id)
-            }}
-            key={pin.id}
-            position={{ lat: pin.latitude, lng: pin.longitude }}
-          >
-            {isPinOpen[pin.id] && (
-              <InfoWindow 
-                onCloseClick={() => {
+          mapContainerStyle={mapContainerStyle}
+          zoom={3.5}
+          center={center}
+          options={options}
+          onClick={(event) => {
+            props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
+          }}
+          onLoad={onMapLoad}
+        >
+          {props.pins.map((pin) => (
+            <Marker
+              onClick={() => {
                   toggleInfoWindow(pin.id)
-                }}
-                position={{ lat: pin.latitude, lng: pin.longitude }}
-              >
-                <div style={{}}>
-                  <h3>Description</h3>
-                  <button onClick={() => props.deletePin(pin.id)}>Remove</button>
-                </div>
-              </InfoWindow>
-            )}
-          </Marker>
-        ))}
-      </GoogleMap>
+              }}
+              key={pin.id}
+              position={{ lat: pin.latitude, lng: pin.longitude }}
+            >
+              {isPinOpen[pin.id] && (
+                <InfoWindow 
+                  onCloseClick={() => {
+                    toggleInfoWindow(pin.id)
+                  }}
+                  position={{ lat: pin.latitude, lng: pin.longitude }}
+                >
+                  <div style={{}}>
+                    <h3>Description</h3>
+                    <button onClick={() => props.deletePin(pin.id)}>Remove</button>
+                  </div>
+                </InfoWindow>
+              )}
+            </Marker>
+          ))}
+        </GoogleMap>
+      </div>
     </div>
   );
 };
+
+function Locate({panTo}) {
+  return (
+    <button onClick = {() => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        panTo({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        })
+      }, () => null)
+    }}>
+      <img src='compass.png' alt='compass - locate me' />
+    </button>
+  ) 
+}
 
 function Search({panTo}) {
     const {

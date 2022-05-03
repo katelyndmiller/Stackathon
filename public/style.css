@@ -68,6 +68,10 @@ button {
   font-weight: 300;
 }
 
+img {
+  width: 40px;
+}
+
 button:hover {
   box-shadow: 0 0.5em 0.5em -0.4em;
   transform: translateY(-0.25em)
@@ -90,23 +94,33 @@ a:hover, link:hover {
   cursor: pointer;
 }
 
-.greeting {
-  position: absolute;
-  width: 150px;
-  font-size: 20px;
-  font-weight: 100;
-  top: 5rem;
-  left: 1rem;
-  color: #52AB98;
-  z-index: 10;
+.map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #52AB98;
 }
 
-.search {
-  position: absolute;
-  top: 5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 400px;
-  z-index: 10;
+.mapright {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #52AB98;
+}
+
+.mapright p {
+  margin: 10px;
+}
+
+.mapright h1 {
+  color: white;
+  font-weight: 200;
+  font-size: 25px;
+}
+
+.mapleft {
+  flex: 0.5;
 }
