@@ -42,7 +42,13 @@ const Map = (props) => {
     props.getPins(props.userId);
   }, []);
 
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
   const panTo = React.useCallback(({ lat, lng }) => {
+    console.log(mapRef)
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
@@ -76,6 +82,7 @@ const Map = (props) => {
         onClick={(event) => {
           props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
         }}
+        onLoad={onMapLoad}
       >
         {props.pins.map((pin) => (
           <Marker
@@ -116,17 +123,18 @@ function Search({panTo}) {
     }
 
     const handleSelect = async (address) => {
-        setValue(address, false);
-        clearSuggestions();
-    
-        try {
-          const results = await getGeocode({ address });
-          const { lat, lng } = await getLatLng(results[0]);
-          panTo({ lat, lng });
-        } catch (error) {
-          console.log("Error: ", error);
-        }
-      };
+      setValue(address, false);
+      clearSuggestions();
+  
+      try {
+        const results = await getGeocode({ address });
+        console.log(results)
+        const { lat, lng } = await getLatLng(results[0]);
+        panTo({ lat, lng });
+      } catch (error) {
+        console.log("Error: ", error);
+      }
+    };
 
     return (
       <div className="search">
