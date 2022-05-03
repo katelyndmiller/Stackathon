@@ -40,7 +40,7 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#ffffff"
+                "color": "#f2f2f2"
             }
         ]
     },
@@ -145,7 +145,7 @@ export default [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#c8d7d4"
+                "color": "#c8d8e4"
             }
         ]
     },

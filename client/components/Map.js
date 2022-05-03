@@ -16,7 +16,7 @@ import {
     ComboboxOption,
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
-import { setNewPin, getAllPins } from "../store/Pin";
+import { setNewPin, getAllPins, deletePin } from "../store/Pin";
 
 
 const libraries = ["places"];
@@ -100,6 +100,7 @@ const Map = (props) => {
               position={{ lat: pin.latitude, lng: pin.longitude }}>
                 <div style={{}}>
                   <h1>InfoWindow</h1>
+                  <button onClick={() => props.deletePin(pin.id)}>Remove</button>
                 </div>
               </InfoWindow>
             )}
@@ -162,6 +163,7 @@ const mapDispatch = (dispatch) => {
   return {
     setPin: (lat, lng, userId) => dispatch(setNewPin(lat, lng, userId)),
     getPins: (userId) => dispatch(getAllPins(userId)),
+    deletePin: (pinId) => dispatch(deletePin(pinId)),
   };
 };
 

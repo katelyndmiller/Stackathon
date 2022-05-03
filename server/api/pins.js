@@ -37,3 +37,15 @@ router.post('/add/:userId', async (req, res, next) => {
         next(error)
     }
 })
+
+// DELETE /api/pins/:pinId
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const pin = await Pin.findByPk(req.params.id)
+        console.log(pin)
+        await pin.destroy()
+        res.send(pin)
+    } catch(error) {
+        next(error)
+    }
+})
