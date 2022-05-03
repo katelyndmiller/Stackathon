@@ -5,7 +5,6 @@ import {
   useLoadScript,
   Marker,
   InfoWindow,
-  Polyline,
 } from "@react-google-maps/api";
 import usePlacesAutoComplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 import {
@@ -74,7 +73,7 @@ const Map = (props) => {
     <div className = 'map'>
       <div className = 'mapright'>
         <h1>Hi, {props.firstName}</h1>
-        <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar below to find a location.</p>
+        <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar or geolocation below to find a location.</p>
         <Search panTo={panTo}/>
         <Locate panTo={panTo} />
       </div>
@@ -105,8 +104,9 @@ const Map = (props) => {
                   }}
                   position={{ lat: pin.latitude, lng: pin.longitude }}
                 >
-                  <div style={{}}>
-                    <h3>Description</h3>
+                  <div className = 'infowindow'>
+                    <label>Title</label>
+                    <label>Description</label>
                     <button onClick={() => props.deletePin(pin.id)}>Remove</button>
                   </div>
                 </InfoWindow>

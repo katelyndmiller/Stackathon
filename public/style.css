@@ -80,8 +80,15 @@ button:hover {
 input {
   margin: 5px;
   text-align: center;
+  border: 2px solid #C8D8E4;
 }
 
+.infowindow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 a {
   text-decoration: none;
