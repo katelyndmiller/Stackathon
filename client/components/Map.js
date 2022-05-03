@@ -34,6 +34,7 @@ const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
+  zoomControl: true,
 };
 
 const Map = (props) => {
