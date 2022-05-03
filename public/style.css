@@ -36,11 +36,16 @@ body {
 .navbar h1 {
   font-size: 25px;
   margin-left: 5px;
+  font-weight: 400;
 }
 
 .navbar nav {
   font-size: 15px;
   margin-right: 5px;
+}
+
+nav a {
+  margin: 8px;
 }
 
 .wrapper {
