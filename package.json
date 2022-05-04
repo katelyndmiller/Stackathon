@@ -3,6 +3,10 @@
   "version": "2.0.0",
   "description": "travel memories tracking app",
   "main": "index.js",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.14.15"
+  },
   "scripts": {
     "build": "webpack",
     "build:dev": "npm run build -- --watch --mode=development",
