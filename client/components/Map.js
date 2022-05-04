@@ -16,6 +16,7 @@ import {
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin } from "../store/Pin";
+import Popup from './PinPopup.js'
 
 
 const libraries = ["places"];
@@ -54,6 +55,7 @@ const Map = (props) => {
   }, []);
 
   const [isPinOpen, setIsPinOpen] = React.useState({});
+  const [popupIsOpen, setPopupIsOpen] = React.useState(false);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyA9lRj2cBCFpJzuI0EzO4yiXexo1h0XVk4",
@@ -86,10 +88,12 @@ const Map = (props) => {
           center={center}
           options={options}
           onClick={(event) => {
+            setPopupIsOpen(true)
             props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
           }}
           onLoad={onMapLoad}
         >
+          {popupIsOpen && <Popup />}
           {props.pins.map((pin) => (
             <Marker
               onClick={() => {

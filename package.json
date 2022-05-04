@@ -37,6 +37,7 @@
     "node-sass": "^7.0.1",
     "pg": "^8.5.1",
     "react-bootstrap": "^2.0.0-rc.1",
+    "react-datepicker": "^4.7.0",
     "react-google-maps": "^9.4.5",
     "sequelize": "^6.3.5",
     "use-places-autocomplete": "^2.0.0"

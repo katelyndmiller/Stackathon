@@ -4,6 +4,7 @@ import axios from 'axios';
 const SET_NEW_PIN = 'SET_NEW_PIN';
 const GET_ALL_PINS = 'GET_ALL_PINS';
 const DELETE_PIN = 'DELETE_PIN';
+const UPDATE_PIN = 'UPDATE_PIN';
 
 // ACTION CREATORS
 const _setNewPin = (pin) => ({
@@ -22,6 +23,13 @@ const _deletePin = (pin) => {
         pin
     }
 }
+
+export const _updatePin = (pin) => {
+    return {
+      type: UPDATE_PIN,
+      pin
+    }
+  }
 
 // THUNK CREATORS 
 
@@ -56,6 +64,17 @@ export const deletePin = (id) => {
     }
 }
 
+export const updatePin = (pin) => {
+    return async (dispatch) => {
+      try {
+        const {data} = await axios.put(`/api/pins/${pin.id}`, pin)
+        dispatch(_updatePin(data))
+      } catch(err) {
+        console.error(err)
+      }
+    }
+  }
+
 // INITIAL STATE
 const initialState = {
     pins: [],
@@ -79,6 +98,11 @@ export default function pinsReducer(state = initialState, action) {
             return {
                 ...state,
                 pins: state.pins.filter((pin) => pin.id !== action.pin.id)
+            }
+        case UPDATE_PIN:
+            return {
+                ...state,
+                singlePin: action.pin
             }
         default: 
             return state

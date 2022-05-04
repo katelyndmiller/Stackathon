@@ -15,6 +15,15 @@ const Pin = db.define('pin', {
         validate: {
             notEmpty: true
         }
+    },
+    title: {
+        type: Sequelize.STRING,
+    },
+    date: {
+        type: Sequelize.DATE
+    },
+    Description: {
+        type: Sequelize.TEXT
     }
 })
 
