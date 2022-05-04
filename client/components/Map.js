@@ -91,10 +91,10 @@ const Map = (props) => {
           center={center}
           options={options}
           onClick={(event) => {
+            console.log(props)
             setLat(event.latLng.lat())
             setLong(event.latLng.lng())
             setPopupIsOpen(true)
-            // props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
           }}
           onLoad={onMapLoad}
         >
@@ -117,8 +117,8 @@ const Map = (props) => {
                   position={{ lat: pin.latitude, lng: pin.longitude }}
                 >
                   <div className = 'infowindow'>
-                    <label>Title</label>
-                    <label>Description</label>
+                    <h3>{pin.title}</h3>
+                    <p>{pin.description}</p>
                     <button onClick={() => props.deletePin(pin.id)}>Remove</button>
                   </div>
                 </InfoWindow>
