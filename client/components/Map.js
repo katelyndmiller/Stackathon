@@ -16,7 +16,7 @@ import {
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin } from "../store/Pin";
-import Popup from './PinPopup.js'
+import Datepicker from 'react-datepicker'
 
 
 const libraries = ["places"];
@@ -54,14 +54,17 @@ const Map = (props) => {
     mapRef.current.setZoom(14);
   }, []);
 
-  const [isPinOpen, setIsPinOpen] = React.useState({});
-  const [popupIsOpen, setPopupIsOpen] = React.useState(false);
-
+  
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyA9lRj2cBCFpJzuI0EzO4yiXexo1h0XVk4",
     libraries,
   });
 
+  const [lat, setLat] = React.useState(0);
+  const [long, setLong] = React.useState(0);
+  const [isPinOpen, setIsPinOpen] = React.useState({});
+  const [popupIsOpen, setPopupIsOpen] = React.useState(false);
+  
   const toggleInfoWindow = (pinId) => {
     setIsPinOpen({
         ...isPinOpen,
@@ -88,12 +91,16 @@ const Map = (props) => {
           center={center}
           options={options}
           onClick={(event) => {
+            setLat(event.latLng.lat())
+            setLong(event.latLng.lng())
             setPopupIsOpen(true)
-            props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
+            // props.setPin(event.latLng.lat(), event.latLng.lng(), props.userId);
           }}
           onLoad={onMapLoad}
         >
-          {popupIsOpen && <Popup />}
+
+          {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
+
           {props.pins.map((pin) => (
             <Marker
               onClick={() => {
@@ -124,6 +131,33 @@ const Map = (props) => {
   );
 };
 
+// POP UP BOX
+function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
+  const [startDate, setStartDate] = React.useState(new Date());
+  const [title, setTitle] = React.useState('');
+  const [description, setDescription] = React.useState('')
+
+  const handleSubmit = () => {
+    console.log(userId)
+    setPin(lat, long, title, description, userId);
+    setPopupIsOpen(false)
+  }
+
+  return (
+      <div className = 'popupform'>
+          <div className = 'box'>
+              <form onSubmit={handleSubmit}>
+                  <input name="title" type="text" placeholder = 'Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                  <Datepicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                  <textarea placeholder = 'Description' name = 'description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+                  <button type='submit'>Submit</button>
+              </form>
+          </div>
+      </div>
+  )
+}
+
+// GEOLOCATION
 function Locate({panTo}) {
   return (
     <button onClick = {() => {
@@ -139,6 +173,7 @@ function Locate({panTo}) {
   ) 
 }
 
+// SEARCH BAR
 function Search({panTo}) {
     const {
         ready,
@@ -189,7 +224,7 @@ function Search({panTo}) {
 
 const mapDispatch = (dispatch) => {
   return {
-    setPin: (lat, lng, userId) => dispatch(setNewPin(lat, lng, userId)),
+    setPin: (lat, lng, title, description, userId) => dispatch(setNewPin(lat, lng, title, description, userId)),
     getPins: (userId) => dispatch(getAllPins(userId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),
   };
