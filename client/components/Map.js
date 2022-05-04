@@ -16,7 +16,6 @@ import {
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin } from "../store/Pin";
-import Datepicker from 'react-datepicker'
 
 
 const libraries = ["places"];
@@ -118,6 +117,7 @@ const Map = (props) => {
                 >
                   <div className = 'infowindow'>
                     <h3>{pin.title}</h3>
+                    <h4>{`When you visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
                     <button onClick={() => props.deletePin(pin.id)}>Remove</button>
                   </div>
@@ -133,22 +133,23 @@ const Map = (props) => {
 
 // POP UP BOX
 function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
-  const [startDate, setStartDate] = React.useState(new Date());
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('')
+  const [date, setDate] = React.useState('')
+  const form = React.useRef()
 
   const handleSubmit = () => {
-    console.log(userId)
-    setPin(lat, long, title, description, userId);
+    console.log(date)
+    setPin(userId, lat, long, title, description, date);
     setPopupIsOpen(false)
   }
 
   return (
       <div className = 'popupform'>
           <div className = 'box'>
-              <form onSubmit={handleSubmit}>
+              <form ref={form} onSubmit={handleSubmit}>
                   <input name="title" type="text" placeholder = 'Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
-                  <Datepicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                  <input name="date" type="text" placeholder = 'When did you visit?' value={date} onChange={(e) => setDate(e.target.value)}/>
                   <textarea placeholder = 'Description' name = 'description' value={description} onChange={(e) => setDescription(e.target.value)}/>
                   <button type='submit'>Submit</button>
               </form>
@@ -224,7 +225,7 @@ function Search({panTo}) {
 
 const mapDispatch = (dispatch) => {
   return {
-    setPin: (lat, lng, title, description, userId) => dispatch(setNewPin(lat, lng, title, description, userId)),
+    setPin: (userId, lat, lng, title, description, date) => dispatch(setNewPin(userId, lat, lng, title, description, date)),
     getPins: (userId) => dispatch(getAllPins(userId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),
   };

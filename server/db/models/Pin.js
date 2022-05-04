@@ -20,7 +20,7 @@ const Pin = db.define('pin', {
         type: Sequelize.STRING,
     },
     date: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING,
     },
     description: {
         type: Sequelize.TEXT

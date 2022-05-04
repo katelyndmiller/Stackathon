@@ -100,6 +100,7 @@ textarea {
   border: 2px solid #C8D8E4;
   height: 125px;
   width: 250px;
+  margin: 5px;
 }
 
 .infowindow {
@@ -108,7 +109,7 @@ textarea {
   align-items: center;
   justify-content: center;
   border: 1px solid #52AB98;
-  width: 250px;
+  width: 350px;
 }
 
 .infowindow p {
@@ -121,6 +122,12 @@ textarea {
   font-size: 20px;
   font-weight: 400;
   margin-top: 5px;
+}
+
+.infowindow h4 {
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 3px;
 }
 
 a {

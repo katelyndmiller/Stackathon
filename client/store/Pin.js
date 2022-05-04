@@ -33,10 +33,10 @@ export const _updatePin = (pin) => {
 
 // THUNK CREATORS 
 
-export const setNewPin = (latitude, longitude, title, description, userId) => {
+export const setNewPin = (userId, latitude, longitude, title, description, date) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.post(`/api/pins/add/${userId}`, {latitude, longitude, title, description})
+            const {data} = await axios.post(`/api/pins/add/${userId}`, {latitude, longitude, title, description, date})
             console.log(data)
             dispatch(_setNewPin(data))
         } catch (error) {
