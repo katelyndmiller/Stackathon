@@ -33,8 +33,7 @@ const center = {
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
-  zoomControl: true,
-  zoomControl: true,
+  zoomControl: false,
 };
 
 const Map = (props) => {

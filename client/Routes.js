@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
-import { Login } from './components/login/AuthFormLogin';
+import { Login } from './components/AuthFormLogin';
 import { Signup } from './components/AuthFormSignup';
 import Home from './components/Home';
 import Memory from './components/Memory'
