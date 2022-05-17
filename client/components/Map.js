@@ -15,7 +15,7 @@ import {
     ComboboxOption,
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
-import { setNewPin, getAllPins, deletePin } from "../store/Pin";
+import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
 
 
 const libraries = ["places"];
@@ -36,6 +36,7 @@ const options = {
   zoomControl: false,
 };
 
+// MAP
 const Map = (props) => {
   React.useEffect(() => {
     props.getPins(props.userId);
@@ -62,6 +63,7 @@ const Map = (props) => {
   const [long, setLong] = React.useState(0);
   const [isPinOpen, setIsPinOpen] = React.useState({});
   const [popupIsOpen, setPopupIsOpen] = React.useState(false);
+  const [updatePopupIsOpen, setUpdatePopupIsOpen] = React.useState(false);
   
   const toggleInfoWindow = (pinId) => {
     setIsPinOpen({
@@ -98,11 +100,13 @@ const Map = (props) => {
         >
 
           {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
+          {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
 
           {props.pins.map((pin) => (
             <Marker
               onClick={() => {
                   toggleInfoWindow(pin.id)
+                  props.getSinglePin(pin.id)
               }}
               key={pin.id}
               position={{ lat: pin.latitude, lng: pin.longitude }}
@@ -118,7 +122,10 @@ const Map = (props) => {
                     <h3>{pin.title}</h3>
                     <h4>{`When you visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
-                    <button onClick={() => props.deletePin(pin.id)}>Remove</button>
+                    <div className = 'infowindow-buttons'>
+                      <button onClick={() => props.deletePin(pin.id)}>Remove</button>
+                      <button onClick={() => setUpdatePopupIsOpen(true)}>Update</button>
+                    </div>
                   </div>
                 </InfoWindow>
               )}
@@ -130,6 +137,32 @@ const Map = (props) => {
   );
 };
 
+// UPDATE POP UP BOX
+function UpdatePopup ({pin, updatePin, setUpdatePopupIsOpen}) {
+  const [title, setTitle] = React.useState(pin.title);
+  const [description, setDescription] = React.useState(pin.description)
+  const [date, setDate] = React.useState(pin.date)
+  const form = React.useRef()
+
+  const handleSubmit = () => {
+    updatePin({...pin, title, description, date});
+    setUpdatePopupIsOpen(false)
+  }
+
+  return (
+      <div className = 'popupform'>
+          <div className = 'box'>
+              <form ref={form} onSubmit={handleSubmit}>
+                  <input name="title" type="text" placeholder = 'Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                  <input name="date" type="text" placeholder = 'When did you visit?' value={date} onChange={(e) => setDate(e.target.value)}/>
+                  <textarea placeholder = 'Description' name = 'description' value={description} onChange={(e) => setDescription(e.target.value)}/>
+                  <button type='submit'>Submit</button>
+              </form>
+          </div>
+      </div>
+  )
+}
+
 // POP UP BOX
 function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
   const [title, setTitle] = React.useState('');
@@ -138,7 +171,6 @@ function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
   const form = React.useRef()
 
   const handleSubmit = () => {
-    console.log(date)
     setPin(userId, lat, long, title, description, date);
     setPopupIsOpen(false)
   }
@@ -226,13 +258,16 @@ const mapDispatch = (dispatch) => {
   return {
     setPin: (userId, lat, lng, title, description, date) => dispatch(setNewPin(userId, lat, lng, title, description, date)),
     getPins: (userId) => dispatch(getAllPins(userId)),
+    getSinglePin: (pinId) => dispatch(getSinglePin(pinId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),
+    updatePin: (pin) => dispatch(updatePin(pin))
   };
 };
 
 const mapState = (state) => {
   return {
     pins: state.pins.pins,
+    pin: state.pins.singlePin,
     userId: state.auth.id,
     isLoggedIn: !!state.auth.id,
   };

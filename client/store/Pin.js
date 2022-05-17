@@ -3,6 +3,7 @@ import axios from 'axios';
 // ACTION TYPES
 const SET_NEW_PIN = 'SET_NEW_PIN';
 const GET_ALL_PINS = 'GET_ALL_PINS';
+const SINGLE_PIN = 'SINGLE_PIN';
 const DELETE_PIN = 'DELETE_PIN';
 const UPDATE_PIN = 'UPDATE_PIN';
 
@@ -16,6 +17,11 @@ const _getAllPins = (pins) => ({
     type: GET_ALL_PINS,
     pins
 })
+
+export const setSinglePin = (pin) => ({
+      type: SINGLE_PIN,
+      pin
+  })
 
 const _deletePin = (pin) => {
     return {
@@ -57,6 +63,17 @@ export const getAllPins = (userId) => {
     }
 }
 
+export const getSinglePin = (id) => {
+    return async (dispatch) => {
+      try {
+        const {data} = await axios.get(`/api/pins/singlePin/${id}`)
+        dispatch(setSinglePin(data))
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  }
+
 export const deletePin = (id) => {
     return async (dispatch) => {
         const {data} = await axios.delete(`/api/pins/${id}`)
@@ -93,6 +110,11 @@ export default function pinsReducer(state = initialState, action) {
             return {
                 ...state,
                 pins: [...action.pins]
+            }
+        case SINGLE_PIN:
+            return {
+                ...state,
+                singlePin: action.pin
             }
         case DELETE_PIN:
             return {

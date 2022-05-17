@@ -2,6 +2,7 @@
   height: 100vh;
 }
 
+/*SIGN UP LOGIN PAGES*/
 .signup-login {
   width: 100%;
   height: calc(100vh - 70px);
@@ -28,6 +29,7 @@ body {
   background-color: white;
 }
 
+/*NAVBAR*/
 .navbar {
   width: 100%;
   height: 70px;
@@ -173,6 +175,7 @@ a:hover, link:hover {
   flex: 0.5;
 }
 
+/* POP UP FORM */
 .popupform {
   background: #00000050;
   width: 100%;
