@@ -7,8 +7,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div className = 'navbar'>
     <div className = 'wrapper'>
       <div className = 'logo'>
+        <h1>Travel</h1>
         <img src='world.png' alt=''/>
-        <h1>Travel Tracker</h1>
+        <h1>Tracker</h1>
       </div>
         <nav>
           {isLoggedIn ? (

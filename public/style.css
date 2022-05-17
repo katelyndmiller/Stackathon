@@ -34,13 +34,13 @@ body {
   width: 100%;
   height: 70px;
   background-color: #fcf8ec;
-  box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+  box-shadow: 0 2px 2px -2px rgba(0,0,0,1);
 }
 
 .navbar h1 {
   font-size: 25px;
-  margin-left: 5px;
-  font-weight: 400;
+  margin: 3px;
+  font-weight: 600;
   color: #52AB98;
 }
 
@@ -66,6 +66,11 @@ nav a {
   justify-content: center;
 }
 
+.logo img {
+  width: 35px;
+  opacity: 75%;
+}
+
 .fields {
   display: flex;
   flex-direction: column;
@@ -84,17 +89,17 @@ button {
   font-weight: 300;
 }
 
-img {
-  width: 50px;
+.geolocation-img {
+  width: 40px;
 }
 
 .geolocation-img:hover {
-  width: 55px;
+  width: 45px;
 }
 
-/* button:hover {
-  box-shadow: 0 0.5em 0.5em -0.4em;
-} */
+.infowindow-btn:hover {
+  background-color: #2B6777;
+}
 
 input {
   margin: 5px;

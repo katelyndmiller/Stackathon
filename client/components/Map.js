@@ -123,8 +123,8 @@ const Map = (props) => {
                     <h4>{`When you visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
                     <div className = 'infowindow-buttons'>
-                      <button onClick={() => props.deletePin(pin.id)}>Remove</button>
-                      <button onClick={() => setUpdatePopupIsOpen(true)}>Update</button>
+                      <button className='infowindow-btn' onClick={() => props.deletePin(pin.id)}>Remove</button>
+                      <button className='infowindow-btn' onClick={() => setUpdatePopupIsOpen(true)}>Update</button>
                     </div>
                   </div>
                 </InfoWindow>
