@@ -35,6 +35,7 @@ body {
   height: 70px;
   background-color: #fcf8ec;
   box-shadow: 0 2px 2px -2px rgba(0,0,0,1);
+  border-bottom: 1px solid #52AB98;
 }
 
 .navbar h1 {
@@ -68,7 +69,7 @@ nav a {
 
 .logo img {
   width: 35px;
-  opacity: 75%;
+  opacity: 80%;
 }
 
 .fields {

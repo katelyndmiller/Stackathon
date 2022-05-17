@@ -31,7 +31,7 @@ const center = {
 };
 
 const options = {
-  styles: mapStyles,
+  // styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: false,
 };
