@@ -200,7 +200,7 @@ function Locate({panTo}) {
         })
       }, () => null)
     }}>
-      <img src='compass.png' alt='compass - locate me' />
+      <img src='compass.png' alt='compass - locate me' className='geolocation-img' />
     </button>
   ) 
 }

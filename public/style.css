@@ -88,9 +88,13 @@ img {
   width: 50px;
 }
 
-button:hover {
-  box-shadow: 0 0.5em 0.5em -0.4em;
+.geolocation-img:hover {
+  width: 55px;
 }
+
+/* button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+} */
 
 input {
   margin: 5px;
@@ -110,9 +114,31 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid #52AB98;
   width: 350px;
 }
+
+.gm-ui-hover-effect {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: right !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+}
+
+.gm-style .gm-style-iw {
+  top: 0 !important;
+  left: 0 !important; 
+  width: 400px !important;
+  min-height: 120px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 2px solid #52AB98 !important;
+}     
 
 .infowindow p {
   text-align: center;
