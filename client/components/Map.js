@@ -16,6 +16,7 @@ import {
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
+import Toggle from './ToggleSwitch';
 
 
 const libraries = ["places"];
@@ -64,6 +65,7 @@ const Map = (props) => {
   const [isPinOpen, setIsPinOpen] = React.useState({});
   const [popupIsOpen, setPopupIsOpen] = React.useState(false);
   const [updatePopupIsOpen, setUpdatePopupIsOpen] = React.useState(false);
+  const [toggled, setToggled] = React.useState(false);
   
   const toggleInfoWindow = (pinId) => {
     setIsPinOpen({
@@ -82,6 +84,8 @@ const Map = (props) => {
         <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar or geolocation below to find a location.</p>
         <Search panTo={panTo}/>
         <Locate panTo={panTo} />
+        <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
+        <p>The box is {toggled ? 'on': 'off'}</p>
       </div>
     
     <div className = 'mapleft'>
