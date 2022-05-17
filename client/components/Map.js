@@ -120,7 +120,7 @@ const Map = (props) => {
                 >
                   <div className = 'infowindow'>
                     <h3>{pin.title}</h3>
-                    <h4>{`When you visited: ${pin.date}`}</h4>
+                    <h4>{`Visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
                     <div className = 'infowindow-buttons'>
                       <button className='infowindow-btn' onClick={() => props.deletePin(pin.id)}>Remove</button>
