@@ -3,6 +3,7 @@ const {
   models: { Pin, User },
 } = require('../db');
 module.exports = router;
+const { Op } = require("sequelize");
 
 // GET api/pins/:userId
 // GET PINS
@@ -19,11 +20,17 @@ router.get('/:userId', async (req, res, next) => {
     }
 })
 
-// GET /api/pins
+// GET /api/pins/allUsersPins/:userId
 // GET ALL USERS PINS
-router.get('/', async (req, res, next) => {
+router.get('/allUsersPins/:userId', async (req, res, next) => {
     try {
-        res.json(await Pin.findAll())
+        res.json(await Pin.findAll({
+            where: {
+                userId: {
+                    [Op.not]: req.params.userId
+                }
+            }
+        }))
     } catch (error) {
         next(error)
     }

@@ -203,6 +203,11 @@ a:hover, link:hover {
   font-size: 25px;
 }
 
+.toggle-lbl {
+  font-size: 12px;
+  color: white;
+}
+
 .mapleft {
   flex: 0.5;
 }

@@ -86,7 +86,7 @@ const Map = (props) => {
         <Search panTo={panTo}/>
         <Locate panTo={panTo} />
         <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
-        <p>The box is {toggled ? 'on': 'off'}</p>
+        <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
       </div>
     
     <div className = 'mapleft'>
@@ -106,7 +106,7 @@ const Map = (props) => {
 
           {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
-          {toggled && <AllUsersPins isPinOpen={isPinOpen}/>}
+          {toggled && <AllUsersPins isPinOpen={isPinOpen} toggleInfoWindow={toggleInfoWindow} userId={props.userId} />}
 
           {props.pins.map((pin) => (
             <Marker
@@ -116,6 +116,7 @@ const Map = (props) => {
               }}
               key={pin.id}
               position={{ lat: pin.latitude, lng: pin.longitude }}
+              icon={"http://maps.google.com/mapfiles/ms/icons/red-dot.png" }
             >
               {isPinOpen[pin.id] && (
                 <InfoWindow 

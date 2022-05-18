@@ -5,7 +5,7 @@ import { getAllUsersPins } from "../store/Pin";
 
 const AllUsersPins = (props) => {
   useEffect(() => {
-    props.getAllUsersPins();
+    props.getAllUsersPins(props.userId);
   }, []);
 
   return (
@@ -13,16 +13,16 @@ const AllUsersPins = (props) => {
       {props.allUsersPins.map((pin) => (
         <Marker
           onClick={() => {
-            toggleInfoWindow(pin.id);
+            props.toggleInfoWindow(pin.id);
           }}
           key={pin.id}
           position={{ lat: pin.latitude, lng: pin.longitude }}
-        //   icon={"http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png"}
+          icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
         >
           {props.isPinOpen[pin.id] && (
             <InfoWindow
               onCloseClick={() => {
-                toggleInfoWindow(pin.id);
+                props.toggleInfoWindow(pin.id);
               }}
               position={{ lat: pin.latitude, lng: pin.longitude }}
             >
@@ -41,7 +41,7 @@ const AllUsersPins = (props) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    getAllUsersPins: () => dispatch(getAllUsersPins()),
+    getAllUsersPins: (userId) => dispatch(getAllUsersPins(userId)),
   };
 };
 

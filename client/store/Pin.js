@@ -69,10 +69,10 @@ export const getAllPins = (userId) => {
     }
 }
 
-export const getAllUsersPins = () => {
+export const getAllUsersPins = (userId) => {
     return async (dispatch) => {
         try {
-            const {data} = await axios.get('/api/pins')
+            const {data} = await axios.get(`/api/pins/allUsersPins/${userId}`)
             dispatch(_getAllUsersPins(data))
         } catch (error) {
             console.error(error)
