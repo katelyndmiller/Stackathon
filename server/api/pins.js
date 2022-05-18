@@ -19,6 +19,16 @@ router.get('/:userId', async (req, res, next) => {
     }
 })
 
+// GET /api/pins
+// GET ALL USERS PINS
+router.get('/', async (req, res, next) => {
+    try {
+        res.json(await Pin.findAll())
+    } catch (error) {
+        next(error)
+    }
+})
+
 // GET /api/pins/singlePin/:id
 // GET A SINGLE PIN
 router.get('/singlePin/:id', async (req, res, next) => {

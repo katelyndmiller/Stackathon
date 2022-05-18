@@ -17,6 +17,7 @@ import {
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
 import Toggle from './ToggleSwitch';
+import AllUsersPins from './AllUsersPins';
 
 
 const libraries = ["places"];
@@ -105,6 +106,7 @@ const Map = (props) => {
 
           {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
+          {toggled && <AllUsersPins isPinOpen={isPinOpen}/>}
 
           {props.pins.map((pin) => (
             <Marker
