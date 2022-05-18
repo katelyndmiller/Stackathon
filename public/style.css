@@ -91,11 +91,11 @@ button {
 }
 
 .geolocation-img {
-  width: 60px;
+  width: 85px;
 }
 
 .geolocation-img:hover {
-  width: 65px;
+  width: 87px;
 }
 
 .infowindow-btn:hover {
@@ -105,7 +105,7 @@ button {
 input {
   margin: 5px;
   text-align: center;
-  border: 2px solid #C8D8E4;
+  border: 1px solid #2B6777;
 }
 
 textarea {
@@ -166,13 +166,12 @@ textarea {
 
 a {
   text-decoration: none;
-  color: black;
-  font-weight: 300;
+  color: #2B6777;
+  font-weight: 400;
 }
 
 a:hover, link:hover {
-  font-weight: 700;
-  color: #52AB98;
+  font-weight: 600;
   cursor: pointer;
 }
 
