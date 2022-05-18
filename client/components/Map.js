@@ -16,6 +16,8 @@ import {
   } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
+import Toggle from './ToggleSwitch';
+import AllUsersPins from './AllUsersPins';
 
 
 const libraries = ["places"];
@@ -64,6 +66,7 @@ const Map = (props) => {
   const [isPinOpen, setIsPinOpen] = React.useState({});
   const [popupIsOpen, setPopupIsOpen] = React.useState(false);
   const [updatePopupIsOpen, setUpdatePopupIsOpen] = React.useState(false);
+  const [toggled, setToggled] = React.useState(false);
   
   const toggleInfoWindow = (pinId) => {
     setIsPinOpen({
@@ -82,6 +85,8 @@ const Map = (props) => {
         <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar or geolocation below to find a location.</p>
         <Search panTo={panTo}/>
         <Locate panTo={panTo} />
+        <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
+        <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
       </div>
     
     <div className = 'mapleft'>
@@ -101,6 +106,7 @@ const Map = (props) => {
 
           {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
+          {toggled && <AllUsersPins isPinOpen={isPinOpen} toggleInfoWindow={toggleInfoWindow} userId={props.userId} />}
 
           {props.pins.map((pin) => (
             <Marker
@@ -110,6 +116,7 @@ const Map = (props) => {
               }}
               key={pin.id}
               position={{ lat: pin.latitude, lng: pin.longitude }}
+              icon={"http://maps.google.com/mapfiles/ms/icons/red-dot.png" }
             >
               {isPinOpen[pin.id] && (
                 <InfoWindow 
