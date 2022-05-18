@@ -116,7 +116,7 @@ const Map = (props) => {
               }}
               key={pin.id}
               position={{ lat: pin.latitude, lng: pin.longitude }}
-              icon={"http://maps.google.com/mapfiles/ms/icons/red-dot.png" }
+              icon={"http://maps.google.com/mapfiles/ms/icons/red-dot.png"}
             >
               {isPinOpen[pin.id] && (
                 <InfoWindow 
