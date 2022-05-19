@@ -145,9 +145,13 @@ export default function pinsReducer(state = initialState, action) {
                 pins: state.pins.filter((pin) => pin.id !== action.pin.id)
             }
         case UPDATE_PIN:
+            const id = action.pin.id
             return {
                 ...state,
-                singlePin: action.pin
+                singlePin: action.pin,
+                pins: state.pins.map((pin) => {
+                    return pin.id === id ? {...action.pin}: pin
+                })
             }
         default: 
             return state
