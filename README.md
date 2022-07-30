@@ -7,7 +7,7 @@ Travel Tracker is a web application that allows users to create an account and k
 - React
 - Redux
 - Google Maps API
-- Geolocate API
 - Sequelize
 - Express
 - Webpack
+- PostgreSQL
