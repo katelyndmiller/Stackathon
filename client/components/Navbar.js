@@ -7,14 +7,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <div className = 'navbar'>
     <div className = 'wrapper'>
       <div className = 'logo'>
-        <h1>Travel</h1>
-        <img src='world.png' alt=''/>
-        <h1>Tracker</h1>
+        <h1>Travel Tracker</h1>
+        {/* <img src='world.png' alt=''/> */}
+        {/* <h1>Tracker</h1> */}
       </div>
         <nav>
           {isLoggedIn ? (
             <div>
-              {/* <Link to="/home">Home</Link> */}
               <a href="#" onClick={handleClick}>
                 Logout
               </a>

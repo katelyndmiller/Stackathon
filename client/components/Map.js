@@ -87,6 +87,9 @@ const Map = (props) => {
         <Locate panTo={panTo} />
         <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
         <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
+        <a className="logout-btn" href="#" onClick={props.handleClick}>
+          Logout
+        </a>
       </div>
     
     <div className = 'mapleft'>
@@ -199,7 +202,7 @@ function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
 // GEOLOCATION
 function Locate({panTo}) {
   return (
-    <button onClick = {() => {
+    <button className="geolocate-btn" onClick = {() => {
       navigator.geolocation.getCurrentPosition((position) => {
         panTo({
           lat: position.coords.latitude,
@@ -243,6 +246,7 @@ function Search({panTo}) {
       <div className="search">
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
+          className="location-search-input"
           value={value}
           onChange={handleInput}
           disabled={!ready}
@@ -267,7 +271,10 @@ const mapDispatch = (dispatch) => {
     getPins: (userId) => dispatch(getAllPins(userId)),
     getSinglePin: (pinId) => dispatch(getSinglePin(pinId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),
-    updatePin: (pin) => dispatch(updatePin(pin))
+    updatePin: (pin) => dispatch(updatePin(pin)),
+    handleClick() {
+      dispatch(logout())
+    }
   };
 };
 

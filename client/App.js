@@ -1,14 +1,21 @@
 import React from 'react'
 import Navbar from './components/Navbar'
 import Routes from './Routes'
+import {connect} from 'react-redux'
 
-const App = () => {
+const App = ({isLoggedIn}) => {
   return (
     <div className = 'app'>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes />
     </div>
   )
 }
 
-export default App
+const mapState = state => {
+  return {
+    isLoggedIn: !!state.auth.id,
+  }
+}
+
+export default connect(mapState)(App)
