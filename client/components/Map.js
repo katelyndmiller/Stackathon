@@ -18,6 +18,7 @@ import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
 import Toggle from './ToggleSwitch';
 import AllUsersPins from './AllUsersPins';
+import {logout} from '../store/auth';
 
 
 const libraries = ["places"];
@@ -77,6 +78,7 @@ const Map = (props) => {
 
   if (loadError) return "Error loading map";
   if (!isLoaded) return "Loading...";
+  console.log(props)
   
   return (
     <div className = 'map'>
