@@ -153,6 +153,14 @@ textarea {
   width: 350px;
 }
 
+.private-pin {
+  color: red;
+}
+
+.public-pin {
+  color: green;
+}
+
 .gm-ui-hover-effect {
   display: flex !important;
   align-items: center !important;

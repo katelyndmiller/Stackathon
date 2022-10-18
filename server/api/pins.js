@@ -28,7 +28,8 @@ router.get('/allUsersPins/:userId', async (req, res, next) => {
             where: {
                 userId: {
                     [Op.not]: req.params.userId
-                }
+                },
+                isPrivate: false
             }
         }))
     } catch (error) {

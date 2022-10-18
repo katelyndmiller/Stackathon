@@ -131,6 +131,7 @@ const Map = (props) => {
                     <h3>{pin.title}</h3>
                     <h4>{`Visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
+                    <small className={pin.isPrivate ? 'private-pin' : 'public-pin'}>{pin.isPrivate ? 'Private' : 'Public'}</small>
                     <div className = 'infowindow-buttons'>
                       <button className='infowindow-btn' onClick={() => props.deletePin(pin.id)}>Remove</button>
                       <button className='infowindow-btn' onClick={() => setUpdatePopupIsOpen(true)}>Update</button>
