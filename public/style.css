@@ -4,8 +4,8 @@
 
 /*SIGN UP LOGIN PAGES*/
 .signup-login {
-  width: 100%;
-  height: calc(100vh - 70px);
+  width: 100vw;
+  height: 100vh;
   background-color: #2B6777;
   position: relative;
   scroll-behavior: smooth;
@@ -18,9 +18,11 @@ body {
   font-family: sans-serif;
 }
 
-.login-signup {
+.login-signup-container {
   width: 250px;
-  height: 275px;
+  height: auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -29,20 +31,34 @@ body {
   background-color: white;
 }
 
-/*NAVBAR*/
+.login-signup-homepage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  margin-bottom: 50px;
+  font-size: 60px;
+}
+
+.signup-link, .login-link {
+  margin-top: 10px;
+}
+
+/* NAVBAR */
 .navbar {
   width: 100%;
   height: 70px;
-  background-color: #bfe5dc;
-  box-shadow: 0 2px 2px -2px rgba(0,0,0,1);
-  border-bottom: 1px solid #52AB98;
+  background-color: #2B6777;
 }
 
 .navbar h1 {
   font-size: 25px;
-  margin: 3px;
-  font-weight: 600;
-  color: #52AB98;
+  font-weight: 400;
+  color: #5af8d6;
 }
 
 .navbar nav {
@@ -51,7 +67,7 @@ body {
 }
 
 nav a {
-  margin: 8px;
+  color: #5af8d6;
 }
 
 .wrapper {
@@ -65,11 +81,11 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .logo img {
-  width: 35px;
-  opacity: 80%;
+  width: 60px;
 }
 
 .fields {
@@ -80,26 +96,40 @@ nav a {
 
 button {
   margin: 10px 10px;
-  color: white;
-  background-color: #52AB98;
-  border: none;
+  color: #2B6777;
+  background-color: white;
+  border: 1px solid #2B6777;
   border-radius: 10px;
   min-height: 30px;
   min-width: 100px;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
+}
+
+button:hover {
+  background-color: #2b67771f;
+  cursor: pointer;
+}
+
+.logout-btn {
+  color: rgb(219, 255, 245);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.logout-btn:hover {
+  color: rgba(219, 255, 245, 0.352);
+}
+
+.geolocate-btn {
+  background-color: #2B6777;
 }
 
 .geolocation-img {
-  width: 85px;
-}
-
-.geolocation-img:hover {
-  width: 87px;
-}
-
-.infowindow-btn:hover {
+  width: 90px;
   background-color: #2B6777;
+  border: 1px solid #2B6777;
+  border-radius: 50%;
 }
 
 input {
@@ -171,7 +201,7 @@ a {
 }
 
 a:hover, link:hover {
-  font-weight: 600;
+  color: #2b677785;
   cursor: pointer;
 }
 
@@ -179,7 +209,7 @@ a:hover, link:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #52AB98;
+  background-color: #2B6777;
 }
 
 .mapright {
@@ -189,17 +219,19 @@ a:hover, link:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #52AB98;
+  background-color: #2B6777;
 }
 
 .mapright p {
   margin: 10px;
+  font-weight: 350;
+  color: rgb(219, 255, 245);
 }
 
 .mapright h1 {
-  color: white;
-  font-weight: 200;
-  font-size: 25px;
+  color: rgb(219, 255, 245);
+  font-weight: 300;
+  font-size: 30px;
 }
 
 .toggle-lbl {
@@ -303,4 +335,13 @@ form {
   border-radius: 21px;
   transition: 0.2s;
   background-color: white;
+}
+
+/* COMBOBOX SEARCH BAR */
+.location-search-input {
+  border-radius: 8px;
+}
+
+.location-search-input:hover {
+  border: 1px solid #5af8d6;
 }
