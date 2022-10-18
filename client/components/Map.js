@@ -101,7 +101,7 @@ const Map = (props) => {
           onLoad={onMapLoad}
         >
 
-          {popupIsOpen && <AddNewPinPopupBox lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
+          {popupIsOpen && <AddNewPinPopupBox latitude={lat} longitude={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
           {toggled && <AllUsersPins isPinOpen={isPinOpen} toggleInfoWindow={toggleInfoWindow} userId={props.userId} />}
 
@@ -148,7 +148,7 @@ const Map = (props) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    setPin: (userId, lat, lng, title, description, date) => dispatch(setNewPin(userId, lat, lng, title, description, date)),
+    setPin: (pin) => dispatch(setNewPin(pin)),
     getPins: (userId) => dispatch(getAllPins(userId)),
     getSinglePin: (pinId) => dispatch(getSinglePin(pinId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),

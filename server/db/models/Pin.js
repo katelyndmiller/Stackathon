@@ -17,13 +17,18 @@ const Pin = db.define('pin', {
         }
     },
     title: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
     },
     date: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
     },
     description: {
         type: Sequelize.TEXT
+    },
+    isPrivate: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
 })
 
