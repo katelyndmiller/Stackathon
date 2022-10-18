@@ -19,6 +19,7 @@ import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../st
 import Toggle from './ToggleSwitch';
 import AllUsersPins from './AllUsersPins';
 import {logout} from '../store/auth';
+import UpdatePopup from "./UpdatePinPopupBox";
 
 
 const libraries = ["places"];
@@ -149,31 +150,7 @@ const Map = (props) => {
   );
 };
 
-// UPDATE POP UP BOX
-function UpdatePopup ({pin, updatePin, setUpdatePopupIsOpen}) {
-  const [title, setTitle] = React.useState(pin.title);
-  const [description, setDescription] = React.useState(pin.description)
-  const [date, setDate] = React.useState(pin.date)
-  const form = React.useRef()
 
-  const handleSubmit = () => {
-    updatePin({...pin, title, description, date});
-    setUpdatePopupIsOpen(false)
-  }
-
-  return (
-      <div className = 'popupform'>
-          <div className = 'box'>
-              <form ref={form} onSubmit={handleSubmit}>
-                  <input name="title" type="text" placeholder = 'Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
-                  <input name="date" type="text" placeholder = 'When did you visit?' value={date} onChange={(e) => setDate(e.target.value)}/>
-                  <textarea placeholder = 'Description' name = 'description' value={description} onChange={(e) => setDescription(e.target.value)}/>
-                  <button type='submit'>Submit</button>
-              </form>
-          </div>
-      </div>
-  )
-}
 
 // POP UP BOX
 function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
