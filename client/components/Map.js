@@ -6,20 +6,15 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import usePlacesAutoComplete, {getGeocode, getLatLng} from "use-places-autocomplete";
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
-  } from "@reach/combobox";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
 import Toggle from './ToggleSwitch';
 import AllUsersPins from './AllUsersPins';
-import {logout} from '../store/auth';
 import UpdatePopup from "./UpdatePinPopupBox";
+import GeolocationBtn from "./GeolocationBtn";
+import AddNewPinPopupBox from "./AddNewPinPopupBox";
+import SearchBar from "./SearchBar";
+import {logout} from '../store/auth';
 
 
 const libraries = ["places"];
@@ -40,7 +35,6 @@ const options = {
   zoomControl: false,
 };
 
-// MAP
 const Map = (props) => {
   React.useEffect(() => {
     props.getPins(props.userId);
@@ -79,15 +73,14 @@ const Map = (props) => {
 
   if (loadError) return "Error loading map";
   if (!isLoaded) return "Loading...";
-  console.log(props)
   
   return (
     <div className = 'map'>
       <div className = 'mapright'>
         <h1>Hi, {props.firstName}</h1>
         <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar or geolocation below to find a location.</p>
-        <Search panTo={panTo}/>
-        <Locate panTo={panTo} />
+        <SearchBar panTo={panTo}/>
+        <GeolocationBtn panTo={panTo} />
         <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
         <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
         <a className="logout-btn" href="#" onClick={props.handleClick}>
@@ -110,7 +103,7 @@ const Map = (props) => {
           onLoad={onMapLoad}
         >
 
-          {popupIsOpen && <PinPopup lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
+          {popupIsOpen && <AddNewPinPopupBox lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
           {toggled && <AllUsersPins isPinOpen={isPinOpen} toggleInfoWindow={toggleInfoWindow} userId={props.userId} />}
 
@@ -149,100 +142,6 @@ const Map = (props) => {
     </div>
   );
 };
-
-
-
-// POP UP BOX
-function PinPopup ({lat, long, userId, setPin, setPopupIsOpen}) {
-  const [title, setTitle] = React.useState('');
-  const [description, setDescription] = React.useState('')
-  const [date, setDate] = React.useState('')
-  const form = React.useRef()
-
-  const handleSubmit = () => {
-    setPin(userId, lat, long, title, description, date);
-    setPopupIsOpen(false)
-  }
-
-  return (
-      <div className = 'popupform'>
-          <div className = 'box'>
-              <form ref={form} onSubmit={handleSubmit}>
-                  <input name="title" type="text" placeholder = 'Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
-                  <input name="date" type="text" placeholder = 'When did you visit?' value={date} onChange={(e) => setDate(e.target.value)}/>
-                  <textarea placeholder = 'Description' name = 'description' value={description} onChange={(e) => setDescription(e.target.value)}/>
-                  <button type='submit'>Submit</button>
-              </form>
-          </div>
-      </div>
-  )
-}
-
-// GEOLOCATION
-function Locate({panTo}) {
-  return (
-    <button className="geolocate-btn" onClick = {() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        panTo({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        })
-      }, () => null)
-    }}>
-      <img src='compass.png' alt='compass - locate me' className='geolocation-img' />
-    </button>
-  ) 
-}
-
-// SEARCH BAR
-function Search({panTo}) {
-    const {
-        ready,
-        value,
-        setValue, 
-        suggestions: { status, data },
-        clearSuggestions} = usePlacesAutoComplete()
-
-    const handleInput = (e) => {
-        setValue(e.target.value)
-    }
-
-    const handleSelect = async (address) => {
-      setValue(address, false);
-      clearSuggestions();
-  
-      try {
-        const results = await getGeocode({ address });
-        console.log(results)
-        const { lat, lng } = await getLatLng(results[0]);
-        panTo({ lat, lng });
-      } catch (error) {
-        console.log("Error: ", error);
-      }
-    };
-
-    return (
-      <div className="search">
-      <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          className="location-search-input"
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search Location"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </div>
-    )
-}
 
 const mapDispatch = (dispatch) => {
   return {
