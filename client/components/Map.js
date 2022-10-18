@@ -101,7 +101,7 @@ const Map = (props) => {
           onLoad={onMapLoad}
         >
 
-          {popupIsOpen && <AddNewPinPopupBox lat={lat} long={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
+          {popupIsOpen && <AddNewPinPopupBox latitude={lat} longitude={long} userId={props.userId} setPin={props.setPin} setPopupIsOpen={setPopupIsOpen}/>}
           {updatePopupIsOpen && <UpdatePopup pin={props.pin} updatePin={props.updatePin} setUpdatePopupIsOpen={setUpdatePopupIsOpen}/>}
           {toggled && <AllUsersPins isPinOpen={isPinOpen} toggleInfoWindow={toggleInfoWindow} userId={props.userId} />}
 
@@ -131,6 +131,7 @@ const Map = (props) => {
                     <h3>{pin.title}</h3>
                     <h4>{`Visited: ${pin.date}`}</h4>
                     <p>{pin.description}</p>
+                    <small className={pin.isPrivate ? 'private-pin' : 'public-pin'}>{pin.isPrivate ? 'Private' : 'Public'}</small>
                     <div className = 'infowindow-buttons'>
                       <button className='infowindow-btn' onClick={() => props.deletePin(pin.id)}>Remove</button>
                       <button className='infowindow-btn' onClick={() => setUpdatePopupIsOpen(true)}>Update</button>
@@ -148,7 +149,7 @@ const Map = (props) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    setPin: (userId, lat, lng, title, description, date) => dispatch(setNewPin(userId, lat, lng, title, description, date)),
+    setPin: (pin) => dispatch(setNewPin(pin)),
     getPins: (userId) => dispatch(getAllPins(userId)),
     getSinglePin: (pinId) => dispatch(getSinglePin(pinId)),
     deletePin: (pinId) => dispatch(deletePin(pinId)),
