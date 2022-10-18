@@ -17,7 +17,12 @@ const AllUsersPins = (props) => {
           }}
           key={pin.id}
           position={{ lat: pin.latitude, lng: pin.longitude }}
-          icon={"http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }
+          icon={{
+            url: "blackpin.png",
+            scaledSize: new window.google.maps.Size(30,30),
+            origin: new window.google.maps.Point(0,0),
+            anchor: new window.google.maps.Point(15,15)
+          }}
         >
           {props.isPinOpen[pin.id] && (
             <InfoWindow
