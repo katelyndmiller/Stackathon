@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { connect } from "react-redux";
 import {
   GoogleMap,
@@ -36,16 +36,16 @@ const options = {
 };
 
 const Map = (props) => {
-  React.useEffect(() => {
+  useEffect(() => {
     props.getPins(props.userId);
   }, []);
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
 
-  const panTo = React.useCallback(({ lat, lng }) => {
+  const panTo = useCallback(({ lat, lng }) => {
     console.log(mapRef)
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
@@ -57,12 +57,12 @@ const Map = (props) => {
     libraries,
   });
 
-  const [lat, setLat] = React.useState(0);
-  const [long, setLong] = React.useState(0);
-  const [isPinOpen, setIsPinOpen] = React.useState({});
-  const [popupIsOpen, setPopupIsOpen] = React.useState(false);
-  const [updatePopupIsOpen, setUpdatePopupIsOpen] = React.useState(false);
-  const [toggled, setToggled] = React.useState(false);
+  const [lat, setLat] = useState(0);
+  const [long, setLong] = useState(0);
+  const [isPinOpen, setIsPinOpen] = useState({});
+  const [popupIsOpen, setPopupIsOpen] = useState(false);
+  const [updatePopupIsOpen, setUpdatePopupIsOpen] = useState(false);
+  const [toggled, setToggled] = useState(false);
   
   const toggleInfoWindow = (pinId) => {
     setIsPinOpen({
@@ -83,9 +83,7 @@ const Map = (props) => {
         <GeolocationBtn panTo={panTo} />
         <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
         <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
-        <a className="logout-btn" href="#" onClick={props.handleClick}>
-          Logout
-        </a>
+        <a className="logout-btn" href="#" onClick={props.handleClick}>Logout</a>
       </div>
     
     <div className = 'mapleft'>
