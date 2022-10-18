@@ -112,25 +112,24 @@ button:hover {
 }
 
 .logout-btn {
-  color: white;
-  font-size: 10px;
+  color: rgb(219, 255, 245);
+  font-size: 12px;
   margin-top: 8px;
 }
 
+.logout-btn:hover {
+  color: rgba(219, 255, 245, 0.352);
+}
+
+.geolocate-btn {
+  background-color: #2B6777;
+}
+
 .geolocation-img {
-  width: 85px;
+  width: 90px;
   background-color: #2B6777;
   border: 1px solid #2B6777;
   border-radius: 50%;
-}
-
-.geolocation-img:hover {
-  border: 1px solid white;
-  border-radius: 50%;
-}
-
-.infowindow-btn:hover {
-  background-color: #2B6777;
 }
 
 input {
@@ -225,12 +224,14 @@ a:hover, link:hover {
 
 .mapright p {
   margin: 10px;
+  font-weight: 350;
+  color: rgb(219, 255, 245);
 }
 
 .mapright h1 {
-  color: white;
-  font-weight: 200;
-  font-size: 25px;
+  color: rgb(219, 255, 245);
+  font-weight: 300;
+  font-size: 30px;
 }
 
 .toggle-lbl {
