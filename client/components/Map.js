@@ -8,12 +8,9 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
-import Toggle from './ToggleSwitch';
 import AllUsersPins from './AllUsersPins';
 import UpdatePopup from "./UpdatePinPopupBox";
-import GeolocationBtn from "./GeolocationBtn";
 import AddNewPinPopupBox from "./AddNewPinPopupBox";
-import SearchBar from "./SearchBar";
 import {logout} from '../store/auth';
 import SideBar from './SideBar';
 
