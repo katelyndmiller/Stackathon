@@ -32,6 +32,7 @@ export default function AddNewPinPopupBox ({latitude, longitude, userId, setPin,
                     <label>Private Pin <input name="private" type="checkbox" onChange={(e) => setIsPrivate(e.target.checked)} /></label>
                     <button type='submit'>Submit</button>
                 </form>
+                <button className="cancel-btn" onClick={() => setPopupIsOpen(false)}>Cancel</button>
             </div>
         </div>
     )

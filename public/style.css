@@ -117,6 +117,19 @@ button:hover {
   margin-top: 8px;
 }
 
+.cancel-btn {
+  color: red;
+  border: none;
+  margin-top: 2px;
+  font-size: 12px;
+}
+
+.cancel-btn:hover {
+  cursor: pointer;
+  color: rgba(255, 0, 0, 0.503);
+  background-color: white;
+}
+
 .logout-btn:hover {
   color: rgba(219, 255, 245, 0.352);
 }
@@ -262,9 +275,13 @@ a:hover, link:hover {
 }
 
 .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 30%;
-  height: 40%;
+  height: 50%;
   max-height: 70vh;
   background: #fff;
   border-radius: 4px;
