@@ -26,7 +26,6 @@ export default function SearchBar({panTo}) {
   
       try {
         const results = await getGeocode({ address });
-        console.log(results)
         const { lat, lng } = await getLatLng(results[0]);
         panTo({ lat, lng });
       } catch (error) {

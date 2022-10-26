@@ -8,13 +8,11 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "../../public/mapStyles";
 import { setNewPin, getAllPins, deletePin, updatePin, getSinglePin } from "../store/Pin";
-import Toggle from './ToggleSwitch';
 import AllUsersPins from './AllUsersPins';
 import UpdatePopup from "./UpdatePinPopupBox";
-import GeolocationBtn from "./GeolocationBtn";
 import AddNewPinPopupBox from "./AddNewPinPopupBox";
-import SearchBar from "./SearchBar";
 import {logout} from '../store/auth';
+import SideBar from './SideBar';
 
 
 const libraries = ["places"];
@@ -76,15 +74,7 @@ const Map = (props) => {
   
   return (
     <div className = 'map'>
-      <div className = 'mapright'>
-        <h1>Hi, {props.firstName}</h1>
-        <p>Keep track of all of the awesome places you've traveled! Simply click the location on the map to add a pin. You may utilize the search bar or geolocation below to find a location.</p>
-        <SearchBar panTo={panTo}/>
-        <GeolocationBtn panTo={panTo} />
-        <Toggle onChange={(event) => setToggled(event.target.checked)} toggled={toggled}/>
-        <p className='toggle-lbl'>{toggled ? 'All users pins': 'My pins only'}</p>
-        <a className="logout-btn" href="#" onClick={props.handleClick}>Logout</a>
-      </div>
+      <SideBar firstName={props.firstName} handleClick={props.handleClick} panTo={panTo} toggled={toggled} setToggled={setToggled} />
     
     <div className = 'mapleft'>
       <GoogleMap

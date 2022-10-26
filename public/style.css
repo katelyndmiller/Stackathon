@@ -233,7 +233,7 @@ a:hover, link:hover {
   background-color: #2B6777;
 }
 
-.mapright {
+.sidebar {
   flex: 0.5;
   display: flex;
   flex-direction: column;
@@ -243,13 +243,13 @@ a:hover, link:hover {
   background-color: #2B6777;
 }
 
-.mapright p {
+.sidebar p {
   margin: 10px;
   font-weight: 350;
   color: rgb(219, 255, 245);
 }
 
-.mapright h1 {
+.sidebar h1 {
   color: rgb(219, 255, 245);
   font-weight: 300;
   font-size: 30px;
