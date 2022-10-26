@@ -53,12 +53,13 @@ router.get('/singlePin/:id', async (req, res, next) => {
 // ADD NEW PIN
 router.post('/add/:userId', async (req, res, next) => {
     try {
-        console.log(req.body)
+        console.log("this is the req body" ,req.body)
         const newPin = await Pin.create(req.body)
         const user = await User.findByPk(req.params.userId)
+        console.log('this is the user', user)
 
         await user.addPin(newPin)
-
+        console.log("this is the new pin", newPin)
         res.send(newPin)
     } catch (error) {
         next(error)

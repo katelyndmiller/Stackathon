@@ -41,7 +41,7 @@ const User = db.define('user', {
 module.exports = User
 
 /**
- * instanceMethods
+ * instanceMethods - meant to be called on specific rows of the model, not on the whole model itself. So in this case, you want to use these functions on a specific user (a specific row)
  */
 User.prototype.correctPassword = function(candidatePwd) {
   //we need to compare the plain version to an encrypted version of the password
@@ -53,7 +53,7 @@ User.prototype.generateToken = function() {
 }
 
 /**
- * classMethods
+ * classMethods - used whenever you want to centralize something you want your model to do - like custom complicated queries you use more than once. 
  */
 User.authenticate = async function({ email, password }){
     const user = await this.findOne({where: { email }})
